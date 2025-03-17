@@ -11,7 +11,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        return '<h1>opa<h1>';
+        return view('aluno.list');
     }
 
     /**
