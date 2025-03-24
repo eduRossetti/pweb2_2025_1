@@ -2,18 +2,36 @@
 @section('titulo', 'Listagem Aluno')
 @section('conteudo')
 
-<h3>listagem de alunos</h3>
+<h3>Listagem de Alunos</h3>
 
-<table style="border: 1px solid;">
+<a href="{{ url('aluno/create') }}">Criar Novo Aluno</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
     <thead>
-        <tr>ID</tr>
-        <td>Nome</td>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Ação</th>
+        </tr>
     </thead>
     <tbody>
+        @foreach($dados as $item)
         <tr>
-            <td>1</td>
-            <td>Teste</td>
+            <td>{{ $item->id }}</td>
+            <td>{{ $item->nome }}</td>
+            <td>{{ $item->cpf }}</td>
+            <td>{{ $item->telefone }}</td>
+            <td>
+                <form action="{{ route('aluno.destroy', $item->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Remover</button>
+                </form>
+            </td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 
